@@ -1,5 +1,5 @@
 # Tailwind bugs and features reproducer repository
 
 ## Bugs
-* [42075](https://github.com/symfony/symfony/issues/42075) : [bug/form-id-reproducer](https://github.com/ker0x/symfony-reproducer/tree/bug/form-id-reproducer)
+* [1719](https://github.com/tailwindlabs/tailwind-plus-issues/issues/1719) : [bug/issue-1719-dropdown-link](https://github.com/ker0x/tailwind-reproducer/tree/bug/issue-1719-dropdown-link)
 
