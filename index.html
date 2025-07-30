@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="turbo-refresh-method" content="morph">
+        <meta name="turbo-refresh-scroll" content="preserve">
+        <title>Tailwind reproducer</title>
+        <script type="module" src="/src/main.js"></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1"></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/@hotwired/turbo@8.0.13"></script>
+    </head>
+    <body>
+        <div class="grid min-h-svh">
+            <div class="flex items-center justify-center gap-6">
+                <a
+                    class="inline-flex justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50"
+                    href="/content.html"
+                    data-turbo-prefetch="false"
+                    data-turbo-frame="dynamic-dialog"
+                >
+                    Link with turbo frame attribute
+                </a>
+                <el-dropdown class="inline-block">
+                    <button class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50">
+                        Dropdown
+                    </button>
+                    <el-menu anchor="bottom end" popover class="w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                        <div class="py-1">
+                            <a
+                                href="/content.html"
+                                class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden"
+                            >
+                                Link
+                            </a>
+                        </div>
+                        <div class="py-1">
+                            <a
+                                href="/content.html"
+                                class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden"
+                                data-turbo-prefetch="false"
+                                data-turbo-frame="dynamic-dialog"
+                            >
+                                Link with turbo frame attribute
+                            </a>
+                        </div>
+                    </el-menu>
+                </el-dropdown>
+            </div>
+        </div>
+        <el-dialog
+            data-controller="dialog"
+            data-action="turbo:before-cache@window->dialog#close"
+        >
+            <dialog
+                id="dialog"
+                data-dialog-target="dialog"
+                aria-labelledby="dialog-title"
+                class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent"
+            >
+                <el-dialog-backdrop
+                    class="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"
+                ></el-dialog-backdrop>
+
+                <div tabindex="0" class="flex min-h-full items-end justify-center p-4 text-center focus:outline-none sm:items-center sm:p-0">
+                    <el-dialog-panel
+                        class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-sm sm:p-6 data-closed:sm:translate-y-0 data-closed:sm:scale-95"
+                    >
+                        <turbo-frame
+                            id="dynamic-dialog"
+                            data-dialog-target="dynamicContent"
+                        >
+                        </turbo-frame>
+                    </el-dialog-panel>
+                </div>
+            </dialog>
+        </el-dialog>
+    </body>
+</html>
